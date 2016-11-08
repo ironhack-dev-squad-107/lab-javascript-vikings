@@ -1,9 +1,6 @@
 // https://github.com/shouldjs/should.js
 var should = require('chai').should();
 
-// https://www.npmjs.com/package/mocha-let
-var set    = require('mocha-let');
-
 // https://www.npmjs.com/package/faker
 var faker  = require('faker');
 
@@ -14,10 +11,10 @@ var VikingBattle = require('../lib/viking.js');
 // SOLDIERS
 //------------------------------------------------------
 describe ('SOLDIERS', function () {
-  before (function () {
-    var strength = 150;
-    var health   = 300;
+  var strength = 150;
+  var health   = 300;
 
+  before (function () {
     Soldier = VikingBattle.Soldier;
     soldier = new Soldier(health, strength);
   });
@@ -27,13 +24,13 @@ describe ('SOLDIERS', function () {
   });
 
   it ('should have a number of health', function () {
-    soldier.health.should.be.a('Number');
+    soldier.health.should.be.a('number');
     soldier.health.should.equal(health);
   });
 
   it ('should have a strength', function () {
-    soldier.strength.should.be.a('Number');
-    soldier.health.should.equal(strength);
+    soldier.strength.should.be.a('number');
+    soldier.strength.should.equal(strength);
   });
 
   it ('should have an attack function', function () {
@@ -48,8 +45,8 @@ describe ('SOLDIERS', function () {
   it ('should remove the received damage from his health', function () {
     var damage = 50;
 
-    viking.receiveDamage(damage);
-    viking.health.should.equal(health - damage);
+    soldier.receiveDamage(damage);
+    soldier.health.should.equal(health - damage);
   });
 });
 
@@ -57,11 +54,11 @@ describe ('SOLDIERS', function () {
 // VIKING
 //------------------------------------------------------
 describe ('VIKINGS', function () {
-  before (function () {
-    var name     = faker.name.findName();
-    var strength = 150;
-    var health   = 300;
+  var name     = faker.name.findName();
+  var strength = 150;
+  var health   = 300;
 
+  before (function () {
     Viking = VikingBattle.Viking;
     viking = new Viking(name, health, strength);
   });
@@ -76,12 +73,12 @@ describe ('VIKINGS', function () {
   });
 
   it ('should have a health', function () {
-    viking.health.should.be.a('Number');
+    viking.health.should.be.a('number');
     viking.health.should.equal(health);
   });
 
   it ('should have a strength', function () {
-    viking.strength.should.be.a('Number');
+    viking.strength.should.be.a('number');
     viking.strength.should.equal(strength);
   });
 
@@ -115,10 +112,10 @@ describe ('VIKINGS', function () {
 // SAXONS
 //------------------------------------------------------
 describe ('SAXONS', function () {
-  before (function () {
-    var health = 60;
-    var strength = 25;
+  var health = 60;
+  var strength = 25;
 
+  before (function () {
     Saxon = VikingBattle.Saxon;
     saxon = new Saxon(health, strength);
   });
@@ -128,12 +125,12 @@ describe ('SAXONS', function () {
   });
 
   it ('should have a health', function () {
-    saxon.health.should.be.a('Number');
+    saxon.health.should.be.a('number');
     saxon.health.should.equal(health);
   });
 
   it ('should have a strength', function () {
-    saxon.strength.should.be.a('Number');
+    saxon.strength.should.be.a('number');
     saxon.strength.should.equal(strength);
   });
 
@@ -159,29 +156,29 @@ describe ('SAXONS', function () {
 });
 
 describe ('WAR', function () {
+  function generateViking () {
+    var name     = faker.name.findName();
+    var health   = 300;
+    var strength = 150;
+
+    return new VikingBattle.Viking(name, health, strength);
+  }
+
+  function generateSaxon () {
+    var health   = 60;
+    var strength = 25;
+
+    return new Saxon(health, strength);
+  }
+
   before (function () {
     Viking = VikingBattle.Viking;
     Saxon  = VikingBattle.Saxon;
     War    = VikingBattle.War;
 
+    viking = generateViking();
+    saxon  = generateSaxon();
     war    = new War();
-  });
-
-  var viking;
-  set (viking, function () {
-    var name     = faker.name.findName();
-    var health   = 300;
-    var strength = 150;
-
-    return new Viking(name, health, strength);
-  });
-
-  var saxon;
-  set (saxon, function () {
-    var health   = 60;
-    var strength = 25;
-
-    return new Saxon(health, strength);
   });
 
   it ('should have an array of Vikings', function () {
@@ -190,8 +187,8 @@ describe ('WAR', function () {
 
   it ('should add Vikings to the army', function () {
     war.addViking.should.be.a('Function');
-    war.addViking (this.viking);
-    war.vikingsArmy.length.to.equal(1);
+    war.addViking(viking);
+    war.vikingsArmy.length.should.equal(1);
   });
 
   it ('should have an array of Saxons', function () {
@@ -200,18 +197,19 @@ describe ('WAR', function () {
 
   it ('should add saxons to the army', function () {
     war.addSaxon.should.be.a('Function');
-    war.addSaxon (this.saxon);
+    war.addSaxon (saxon);
     war.saxonsArmy.length.should.equal(1);
   });
 
   it ('should show the result of the saxon attack', function () {
     war.saxonAttack.should.be.a('Function');
-    war.saxonAttack().should.equal(this.viking.name + ' has received ' + this.saxon.strength + ' points of damage');
+    war.saxonAttack().should.equal(viking.name + ' has received ' + saxon.strength + ' points of damage');
   });
 
   it ('should show the result of the viking attack', function () {
     war.vikingAttack.should.be.a('Function');
     war.vikingAttack().should.equal('A Saxon has died in combat');
+    war.saxonsArmy.length.should.equal(0);
   });
 
   it ('should has a fight function to start the combat', function () {
