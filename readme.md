@@ -25,11 +25,11 @@ git push origin master
 
 ## Tools we will use
 
-We will be working with npm, Node, Chai and Mocha to work with this project and learn Oriented Object Programming in JavaScript.
+We will be working with npm, Node, Chai and Mocha to work with this project and learn Object Oriented Programming in JavaScript.
 
 ![](https://i.imgur.com/5QYneg7.jpg)
 
-In future weeks of the course we will explain all this concepts deeply. By the moment, we will give you a few introduction to help you understand what do they mean:
+In future weeks of the course we will explain all this concepts deeply. By the moment, we will give you a few introduction to help you understand how we will use each one:
 
 - [`npm`](https://www.npmjs.com/). It's the Node package manager. It will help us to install all the packages and its dependencies that we need to run our project.
 - [`Node`](https://nodejs.org/es/). It's used to run JavaScript in the back end.
@@ -41,6 +41,7 @@ In future weeks of the course we will explain all this concepts deeply. By the m
 ### Usage
 
 ```bash
+$ cd ~/code/labs/lab-javascript-oop/
 $ npm install
 $ mocha
 
