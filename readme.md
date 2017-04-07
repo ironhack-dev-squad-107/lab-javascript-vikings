@@ -25,70 +25,87 @@ git push origin master
 
 - Navigate to your repo and [create a Pull Request](https://help.github.com/articles/creating-a-pull-request/)
 
-## Tools we will use
+## Testing Introduction
 
-We will be working with npm, Node, Chai and Mocha to work with this project and learn Object Oriented Programming in JavaScript.
+### What is testing?
 
-![](https://i.imgur.com/5QYneg7.jpg)
+Software testing is a process of executing an application to validate and verify that it meets the business and technical requirements and works as expected.
 
-In future weeks of the course we will explain all this concepts deeply. By the moment, we will give you a few introduction to help you understand how we will use each one:
+Testing is a process, not a single activity. So the process of designing tests early at the beginning of the development and the product's life cycle can help to prevent deficiencies in the code or product design.
 
-- [`npm`](https://www.npmjs.com/). It's the Node package manager. It will help us to install all the packages and its dependencies that we need to run our project.
-- [`Node`](https://nodejs.org/es/). It's used to run JavaScript in the back end.
-- [`Chai`](http://chaijs.com/). It's a library that allows us to test our application.
-- [`Mocha`](https://mochajs.org/). It works with `Chai` and allows us to write the tests. We write the tests with Mocha and run them with Chai.
+In this exercise, we have created all the tests you need to create the solution, and you have to execute them all and create the code to accomplish all the requirements.
 
-**Note this is a very big picture about the tools we are going to use in this exercise. We will learn all them all deeply in the future lessons of the course :)**
+Tests prove that your code actually works in every situation in which it’s designed to work. Even when you are improving the design or creating new features, you can change your current code without breaking what already works.
 
-## Usage
+### Testing with Jasmine
 
-```bash
-$ cd ~/code/labs/lab-javascript-oop/
-$ npm install
-$ mocha
+![Jasmine Logo](https://i.imgur.com/A1pop7h.png)
 
-  SOLDIERS
-    ✓ should have Object as its prototype
-    1) should have a number of health
-    2) should have a strength
-    3) should have an attack function
-    4) should have a receiveDamage function
-    5) should remove the received damage from his health
+Jasmine is an automated testing framework for JavaScript. It is designed to be used in BDD (behavior-driven development) programming which focuses more on the business value than on the technical details.
 
-  VIKINGS
-    6) should be derived from Soldier
-    7) should have a name
-    8) should have a health
-    9) should have a strength
-    10) should have an attack function
-    11) should have a receiveDamage function
-    12) should remove the received damage from his health
-    13) should return "Odin Owns You All!" when battleCry is called
-    14) should return "{name} has died in act of combat" when the health is equal or lower than 0
+We have already included Jasmine in the project you just forked, so let's see how to use it to implement our code.
 
-  SAXONS
-    15) should be derived from Soldier
-    16) should have a health
-    17) should have a strength
-    18) should have an attack function
-    19) should have a receiveDamage function
-    20) should remove the received damage from his health
-    21) should return "A Saxon has died in combat" when the health is equal or lower than 0
+### Usage
 
-  WAR
-    22) should have an array of Vikings
-    23) should add Vikings to the army
-    24) should have an array of Saxons
-    25) should add saxons to the army
-    26) should show the result of the saxon attack
-    27) should show the result of the viking attack
-    28) should has a fight function to start the combat
-    29) should show show the final stats of the combat
+Before start coding, we will explain the project structure we have provided you:
 
-
-  1 passing
-  29 failing
 ```
+starter-code/
+├── lib
+│   ├── jasmine-2.5.2/
+│   |   └── ...
+│   ├── .gitkeep
+│   └── jquery-3.1.1.min.js
+├── spec
+│   └── VikingSpec.js
+├── src
+│   └── viking.js
+└─ SpecRunner.html
+```
+
+We are going to be working with the files inside the `spec` and `src` folders. In the `lib` folder you can find all the files that compose Jasmine, that are already linked with the `SpecRunner.html` file.
+
+**Run tests**
+
+Run the tests with Jasmine is super easy, you just have to open the `SpecRunner.html` file in your browser. You will find something like this:
+
+![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_efa91dc3a708695262d274908469649c.png)
+
+It means that right now we have two different tests and just one is passing. We have to implement the code to pass both tests.
+
+**Write the code**
+
+You have to write the correct code to pass the tests in the `src/viking.js` file. The starter code you will find in the file is the following:
+
+```javascript
+// Soldier
+function Soldier () {}
+
+// Viking
+function Viking () {}
+
+// Saxon
+function Saxon () {}
+
+// War
+function War () {}
+```
+
+In this case, the test says that `Soldiers Should have a number of health`, so we have to write the correct code that accomplishes this test. Once we have implemented the correct code, we can refresh the `SpecRunner.html` page to see how our tests are passing.
+
+![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_d3f5633180f716941b65b193832b96bd.png)
+
+![For the win](https://media.giphy.com/media/nXxOjZrbnbRxS/giphy.gif)
+
+**Execute all the tests**
+
+Now that we are passing two tests, the next step is to uncomment the next test. To do that, we have to remove the comment from the `spec/VikingSpec.js` file, and refresh the page to see what we have to implement next:
+
+![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_ce10ddc36ffcf5b9c3235bf882f75b0a.png)
+
+Once we have checked out that the test is failing, we can implement the code to make it pass. This is how [TDD (Test-driven development)](https://en.wikipedia.org/wiki/Test-driven_development) works. Once you have implemented the code to pass all the tests, the exercise will be done.
+
+**Note this is a very big picture about Jasmine and TDD. We will learn how to use Jasmine in the future lessons of the course :)**
 
 ## Exercise
 
@@ -118,6 +135,6 @@ $ mocha
 - It should has a `vikingAttack` function to attack the saxons.
 - It should has a `showStats` function to show a message of how have won the combat.
 
-**Happy Coding!!**
+**//Happy Coding!!**
 
 ![Vikings picture](https://i.imgur.com/fHHEoEj.jpg)
