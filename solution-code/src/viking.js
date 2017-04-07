@@ -95,10 +95,3 @@ function War () {
     return "Vikings have won the war of the century!";
   };
 }
-
-module.exports = {
-  Soldier: Soldier,
-  Viking:  Viking,
-  Saxon:   Saxon,
-  War:     War
-};
